@@ -1,24 +1,31 @@
 package com.guto1906.cursorest.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
-public class Categoria {
+public class Category {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	private Long id;	
 	private String name;
 	
-	public Categoria() {
+	@ManyToMany(mappedBy = "categories")
+	private List<Product> products = new ArrayList<>();
+	
+	
+	public Category() {
 		
 	}
 
-	public Categoria(Long id, String name) {
+	public Category(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,6 +46,15 @@ public class Categoria {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 
 	@Override
 	public int hashCode() {
@@ -56,7 +72,7 @@ public class Categoria {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Category other = (Category) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

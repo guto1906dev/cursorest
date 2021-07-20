@@ -9,28 +9,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guto1906.cursorest.dto.CategoriaDto;
-import com.guto1906.cursorest.services.CategoriaService;
+import com.guto1906.cursorest.dto.CategoryDto;
+import com.guto1906.cursorest.services.CategoryService;
 
 @RestController
 @RequestMapping(value = "/categorias")
-public class CategoriaController {
+public class CategoryController {
 	
 	@Autowired
-	private CategoriaService service;
+	private CategoryService service;
 	
 	@GetMapping
-	public ResponseEntity<List<CategoriaDto>> findAll() {
+	public ResponseEntity<List<CategoryDto>> findAll() {
 		
-		List<CategoriaDto> list = service.findAll();
+		List<CategoryDto> list = service.findAll();
 		
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<CategoriaDto> findById(@PathVariable Long id) {
+	public ResponseEntity<CategoryDto> findById(@PathVariable Long id) {
 		
-		CategoriaDto dto = service.findById(id);
+		CategoryDto dto = service.findById(id);
 		
 		return ResponseEntity.ok().body(dto);
 	}

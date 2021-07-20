@@ -2,32 +2,34 @@ package com.guto1906.cursorest.dto;
 
 import java.io.Serializable;
 
-import com.guto1906.cursorest.domain.Categoria;
+import com.guto1906.cursorest.domain.Category;
 
-public class CategoriaDto implements Serializable {
+public class CategoryDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	private String name;
-
-	public CategoriaDto() {
+	
+	public CategoryDto() {
 
 	}
 	
 	
 
-	public CategoriaDto(Long id, String name) {
+	public CategoryDto(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
+		
 	}
 
 
 
-	public CategoriaDto(Categoria entity) {
+	public CategoryDto(Category entity) {
 		id = entity.getId();
 		name = entity.getName();
+		
 	}
 
 	public Long getId() {
@@ -45,5 +47,7 @@ public class CategoriaDto implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 
 }
