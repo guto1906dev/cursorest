@@ -1,40 +1,29 @@
 package com.guto1906.cursorest.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
-import com.guto1906.cursorest.domain.Category;
-import com.guto1906.cursorest.domain.Product;
+import com.guto1906.cursorest.domain.City;
 
-public class CategoryDto implements Serializable {
-
+public class CityDto implements Serializable{	
+	
 	private static final long serialVersionUID = 1L;
-
+	
 	private Long id;
 	private String name;
+	
+	public CityDto() {
 		
-	public CategoryDto() {
-
 	}
-	
-	
 
-	public CategoryDto(Long id, String name) {
+	public CityDto(Long id, String name) {
 		super();
 		this.id = id;
-		this.name = name;		
-		
+		this.name = name;
 	}
-
-
-
-	public CategoryDto(Category entity) {
+	
+	public CityDto(City entity) {
 		id = entity.getId();
 		name = entity.getName();
-		
-		
 	}
 
 	public Long getId() {
@@ -51,7 +40,8 @@ public class CategoryDto implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}	
+	}
+	
 	
 
 }

@@ -10,3 +10,13 @@ INSERT INTO product_category(products_id,categories_id) VALUES (1,1);
 INSERT INTO product_category(products_id,categories_id) VALUES (2,1);
 INSERT INTO product_category(products_id,categories_id) VALUES (2,2);
 INSERT INTO product_category(products_id,categories_id) VALUES (3,1);
+
+INSERT INTO state(name) VALUES ('Minas Gerais');
+INSERT INTO state(name) VALUES ('São Paulo');
+INSERT INTO state(name) VALUES ('Rio de Janeiro');
+
+INSERT INTO city(name, estado_id) VALUES ('Uberlândia',1);
+INSERT INTO city(name, estado_id) VALUES ('São Paulo',2);
+INSERT INTO city(name, estado_id) VALUES ('Campinas',2);
+INSERT INTO city(name, estado_id) VALUES ('Rio de Janeiro',3);
+INSERT INTO city(name, estado_id) VALUES ('Itaguaí',3);

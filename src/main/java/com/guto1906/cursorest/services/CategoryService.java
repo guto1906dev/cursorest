@@ -30,8 +30,7 @@ public class CategoryService {
 		Category entity = repo.findById(id).orElseThrow(() -> new NoSuchElementException(
 				"Elemento de Id " + id + " não existe, Tipo " + Category.class.getName()));
 		CategoryDto dto = new CategoryDto(entity);
-		System.out.println(dto);
-
+		
 		return dto;
 	}
 

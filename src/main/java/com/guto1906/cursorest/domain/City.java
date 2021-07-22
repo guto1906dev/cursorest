@@ -1,43 +1,37 @@
 package com.guto1906.cursorest.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Product {
+public class City implements Serializable{	
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
 	private String name;
-	private Double price;
 	
+	@ManyToOne
+	@JoinColumn(name = "estado_id")
+	private State state;
 	
-	@ManyToMany
-	@JoinTable(
-			name = "Product_Category",
-			joinColumns = @JoinColumn,
-			inverseJoinColumns = @JoinColumn
-			)	
-	private List<Category> categories = new ArrayList<>();
-	
-	public Product() {
+	public City() {
 		
 	}
 
-	public Product(Long id, String name, Double price) {
+	public City(Long id, String name, State states) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.price = price;
+		this.state = states;
 	}
 
 	public Long getId() {
@@ -56,20 +50,12 @@ public class Product {
 		this.name = name;
 	}
 
-	public Double getPrice() {
-		return price;
+	public State getStates() {
+		return state;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+	public void setStates(State states) {
+		this.state = states;
 	}
 
 	@Override
@@ -88,7 +74,7 @@ public class Product {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Product other = (Product) obj;
+		City other = (City) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -96,7 +82,6 @@ public class Product {
 			return false;
 		return true;
 	}
-	
 	
 	
 
