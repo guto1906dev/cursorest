@@ -5,18 +5,32 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import com.guto1906.cursorest.domain.enums.TipoClient;
 
+@Entity
 public class Client {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
+	@OneToMany(mappedBy = "client")	
 	private List<Address> addresses = new ArrayList<>();
 	
+	@ElementCollection
+	@CollectionTable(name = "PHONE")
 	private Set<String> phones = new HashSet<>();
 	
 	public Client() {

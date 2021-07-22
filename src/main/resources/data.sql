@@ -20,3 +20,14 @@ INSERT INTO city(name, estado_id) VALUES ('São Paulo',2);
 INSERT INTO city(name, estado_id) VALUES ('Campinas',2);
 INSERT INTO city(name, estado_id) VALUES ('Rio de Janeiro',3);
 INSERT INTO city(name, estado_id) VALUES ('Itaguaí',3);
+
+INSERT INTO client(cpf_ou_cnpj, email, name, tipo) VALUES ('00000000001', 'maria@gmail.com','Maria',1);
+INSERT INTO client(cpf_ou_cnpj, email, name, tipo) VALUES ('00000000002', 'fazendo@gmail.com','Fazendo Arte',2);
+
+INSERT INTO address(cep, district, number, public_place, city_id, client_id) VALUES ('00000001', 'Centro1', '31', 'rua1',1,1);
+INSERT INTO address(cep, district, number, public_place, city_id, client_id) VALUES ('00000002', 'Centro2', '32', 'rua2',2,1);
+INSERT INTO address(cep, district, number, public_place, city_id, client_id) VALUES ('00000003', 'Centro3', '33', 'rua3',3,2);
+
+INSERT INTO phone(client_id, phones) VALUES (1, 21000000001);
+INSERT INTO phone(client_id, phones) VALUES (1, 21000000002);
+INSERT INTO phone(client_id, phones) VALUES (2, 21000000003);

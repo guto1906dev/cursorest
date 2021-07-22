@@ -1,15 +1,29 @@
 package com.guto1906.cursorest.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Address {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String publicPlace;
 	private String number;
 	private String district;
 	private String cep;
 	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Client client;
 	
+	@ManyToOne
+	@JoinColumn(name = "city_id")
 	private City city;
 	
 	public Address() {
