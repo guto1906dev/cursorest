@@ -17,8 +17,8 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepository repo;
 
-	public List<CategoryDto> findAll() {
-
+	public List<CategoryDto> findAll(){
+		
 		List<Category> entities = repo.findAll();
 		List<CategoryDto> list = entities.stream().map(entity -> new CategoryDto(entity)).collect(Collectors.toList());
 

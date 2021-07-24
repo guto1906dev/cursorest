@@ -20,7 +20,6 @@ public class Product {
 	private String name;
 	private Double price;
 	
-	
 	@ManyToMany
 	@JoinTable(
 			name = "Product_Category",

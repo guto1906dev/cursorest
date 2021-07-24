@@ -17,7 +17,7 @@ import com.guto1906.cursorest.domain.enums.TipoClient;
 
 @Entity
 public class Client {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,16 +25,19 @@ public class Client {
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-	
-	@OneToMany(mappedBy = "client")	
+
+	@OneToMany(mappedBy = "client")
 	private List<Address> addresses = new ArrayList<>();
-	
+
 	@ElementCollection
 	@CollectionTable(name = "PHONE")
 	private Set<String> phones = new HashSet<>();
-	
+
+	@OneToMany(mappedBy = "cliente")
+	private Set<Pedido> pedidos = new HashSet<>();
+
 	public Client() {
-		
+
 	}
 
 	public Client(Long id, String name, String email, String cpfOuCnpj, TipoClient tipo) {
@@ -102,6 +105,14 @@ public class Client {
 		this.phones = phones;
 	}
 
+	public Set<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setOrders(Set<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,7 +137,5 @@ public class Client {
 			return false;
 		return true;
 	}
-	
-	
 
 }

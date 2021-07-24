@@ -31,3 +31,14 @@ INSERT INTO address(cep, district, number, public_place, city_id, client_id) VAL
 INSERT INTO phone(client_id, phones) VALUES (1, 21000000001);
 INSERT INTO phone(client_id, phones) VALUES (1, 21000000002);
 INSERT INTO phone(client_id, phones) VALUES (2, 21000000003);
+
+INSERT INTO pedido(instant, cliente_id, endereco_entrega_id) VALUES (TIMESTAMP '2017-09-30 10:32',1, 1);
+INSERT INTO payment(pedido_id, estado) VALUES(1,2);
+INSERT INTO card_payment(numero_de_parcelas, pedido_id) VALUES (6,1);
+
+INSERT INTO pedido(instant, cliente_id, endereco_entrega_id) VALUES (TIMESTAMP '2017-09-30 11:32',2, 3);
+INSERT INTO payment(pedido_id, estado) VALUES(2,1);
+INSERT INTO payment_with_bank_slip(data_vencimento, pedido_id) VALUES (TIMESTAMP '2017-10-20',2);
+
+
+
