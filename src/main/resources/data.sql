@@ -40,5 +40,9 @@ INSERT INTO pedido(instant, cliente_id, endereco_entrega_id) VALUES (TIMESTAMP '
 INSERT INTO payment(pedido_id, estado) VALUES(2,1);
 INSERT INTO payment_with_bank_slip(data_vencimento, pedido_id) VALUES (TIMESTAMP '2017-10-20',2);
 
+INSERT INTO item_pedido(desconto, preco, quantidade, pedido_id, product_id) VALUES(0, 200, 1, 1, 1);
+INSERT INTO item_pedido(desconto, preco, quantidade, pedido_id, product_id) VALUES(0, 80, 2, 1, 3);
+INSERT INTO item_pedido(desconto, preco, quantidade, pedido_id, product_id) VALUES(100, 800, 1, 2, 2);
+
 
 

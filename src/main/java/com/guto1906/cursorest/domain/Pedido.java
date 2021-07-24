@@ -1,6 +1,8 @@
 package com.guto1906.cursorest.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -30,6 +33,9 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "endereco_entrega_id")
 	private Address enderecoEntrega;
+	
+	@OneToMany(mappedBy = "id.pedido")
+	private Set<ItemPedido> itens = new HashSet<>();
 
 	public Pedido() {
 
@@ -42,7 +48,8 @@ public class Pedido {
 		this.cliente = cliente;
 		this.enderecoEntrega = enderecoEntrega;
 	}
-
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -81,6 +88,14 @@ public class Pedido {
 
 	public void setEnderecoEntrega(Address enderecoEntrega) {
 		this.enderecoEntrega = enderecoEntrega;
+	}
+
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	@Override

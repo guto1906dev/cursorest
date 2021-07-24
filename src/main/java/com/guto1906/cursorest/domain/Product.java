@@ -1,7 +1,9 @@
 package com.guto1906.cursorest.domain;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Product {
@@ -28,6 +31,9 @@ public class Product {
 			)	
 	private List<Category> categories = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "id.product")
+	private Set<ItemPedido> itens = new HashSet<>();
+	
 	public Product() {
 		
 	}
@@ -37,6 +43,15 @@ public class Product {
 		this.id = id;
 		this.name = name;
 		this.price = price;
+	}
+	
+	public List<Pedido> getPedidos(){
+		List<Pedido> lista = new ArrayList<>();
+		for(ItemPedido p: itens) {
+			lista.add(p.getPedido());
+		}
+		
+		return lista;
 	}
 
 	public Long getId() {
@@ -69,6 +84,16 @@ public class Product {
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
+	}
+
+	
+
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
 	}
 
 	@Override
