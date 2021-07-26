@@ -30,9 +30,9 @@ public class CategoryController {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<CategoryDto> findById(@PathVariable Long id) {
 		
-		CategoryDto dto = service.findById(id);
+		CategoryDto entity = service.findById(id);
 		
-		return ResponseEntity.ok().body(dto);
+		return ResponseEntity.ok().body(entity);
 	}
 	
 

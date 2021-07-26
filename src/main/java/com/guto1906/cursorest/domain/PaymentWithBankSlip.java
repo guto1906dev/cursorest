@@ -4,12 +4,16 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.guto1906.cursorest.domain.enums.StatePayment;
 
 @Entity
 public class PaymentWithBankSlip extends Payment{
 	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataVencimento;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date dataPgamento;
 	
 	public PaymentWithBankSlip() {

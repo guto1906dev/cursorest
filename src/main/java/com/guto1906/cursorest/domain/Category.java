@@ -1,7 +1,8 @@
 package com.guto1906.cursorest.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Category {
+public class Category  implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +21,7 @@ public class Category {
 	private String name;
 	
 	@ManyToMany(mappedBy = "categories")
-	private List<Product> products = new ArrayList<>();
+	private Set<Product> products = new HashSet<>();
 	
 	
 	public Category() {
@@ -48,11 +51,11 @@ public class Category {
 	}
 	
 	
-	public List<Product> getProducts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<Product> products) {
+	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
 

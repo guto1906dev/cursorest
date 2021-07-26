@@ -1,5 +1,6 @@
 package com.guto1906.cursorest.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Pedido {
+public class Pedido  implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +36,7 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "endereco_entrega_id")
 	private Address enderecoEntrega;
+	
 	
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();

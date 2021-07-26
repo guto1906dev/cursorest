@@ -3,6 +3,8 @@ package com.guto1906.cursorest.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,8 @@ public class CategoryService {
 
 	@Autowired
 	private CategoryRepository repo;
-
+	
+	@Transactional
 	public List<CategoryDto> findAll(){
 		
 		List<Category> entities = repo.findAll();
@@ -26,6 +29,7 @@ public class CategoryService {
 
 	}
 
+	@Transactional
 	public CategoryDto findById(Long id) {
 		Category entity = repo.findById(id).orElseThrow(() -> new NoSuchElementException(
 				"Elemento de Id " + id + " não existe, Tipo " + Category.class.getName()));

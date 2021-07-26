@@ -10,20 +10,24 @@ public class CityDto implements Serializable{
 	
 	private Long id;
 	private String name;
+	private String state;
 	
 	public CityDto() {
 		
 	}
 
-	public CityDto(Long id, String name) {
+	public CityDto(Long id, String name, StateDto state) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.state = state.getName();
 	}
 	
 	public CityDto(City entity) {
 		id = entity.getId();
 		name = entity.getName();
+		state = entity.getState().getName();
+		
 	}
 
 	public Long getId() {
@@ -40,6 +44,14 @@ public class CityDto implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(StateDto state) {
+		this.state = state.getName();
 	}
 	
 	

@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class State implements Serializable{	
 	
@@ -49,6 +51,7 @@ public class State implements Serializable{
 		this.name = name;
 	}
 
+	@JsonIgnore
 	public List<City> getCities() {
 		return cities;
 	}

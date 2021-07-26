@@ -1,6 +1,11 @@
 package com.guto1906.cursorest.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.guto1906.cursorest.domain.Client;
 import com.guto1906.cursorest.domain.enums.TipoClient;
@@ -13,7 +18,10 @@ public class ClientDto implements Serializable{
 	private String name;
 	private String email;
 	private String cpfOuCnpj;
-	private Integer tipo;
+	private TipoClient tipo;
+	private List<AddressDto> addresses = new ArrayList<>();
+	private Set<String> phones = new HashSet<>();
+	
 
 	public ClientDto() {
 
@@ -25,16 +33,19 @@ public class ClientDto implements Serializable{
 		this.name = name;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo.getCod();
+		this.tipo = tipo;
+		
 	}
-
+	
 	public ClientDto(Client entity) {
+		super();
 		id = entity.getId();
 		name = entity.getName();
 		email = entity.getEmail();
 		cpfOuCnpj = entity.getCpfOuCnpj();
-		tipo = entity.getTipo().getCod();
-
+		tipo = entity.getTipo();
+		addresses = entity.getAddresses().stream().map(e -> new AddressDto(e)).collect(Collectors.toList());
+		phones = entity.getPhones();
 	}
 
 	public Long getId() {
@@ -70,12 +81,32 @@ public class ClientDto implements Serializable{
 	}
 
 	public TipoClient getTipo() {
-		return TipoClient.toEnum(tipo);
+		return tipo;
 	}
 
 	public void setTipo(TipoClient tipo) {
-		this.tipo = tipo.getCod();
+		this.tipo = tipo;
 	}
+
+	public List<AddressDto> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<AddressDto> addresses) {
+		this.addresses = addresses;
+	}
+
+	public Set<String> getPhones() {
+		return phones;
+	}
+
+	public void setPhones(Set<String> phones) {
+		this.phones = phones;
+	}
+	
+	
+
+	
 	
 	
 

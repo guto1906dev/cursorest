@@ -1,5 +1,6 @@
 package com.guto1906.cursorest.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,8 +15,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Product {
+public class Product  implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +50,7 @@ public class Product {
 		this.price = price;
 	}
 	
+	@JsonIgnore
 	public List<Pedido> getPedidos(){
 		List<Pedido> lista = new ArrayList<>();
 		for(ItemPedido p: itens) {
@@ -78,6 +84,7 @@ public class Product {
 		this.price = price;
 	}
 
+	@JsonIgnore
 	public List<Category> getCategories() {
 		return categories;
 	}
@@ -88,6 +95,7 @@ public class Product {
 
 	
 
+	@JsonIgnore
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}

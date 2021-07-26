@@ -9,26 +9,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guto1906.cursorest.dto.CityDto;
-import com.guto1906.cursorest.services.CityService;
+import com.guto1906.cursorest.dto.PedidoDto;
+import com.guto1906.cursorest.services.PedidoService;
 
 @RestController
-@RequestMapping(value = "/cidades")
-public class CityController {
+@RequestMapping(value = "/pedidos")
+public class PedidoController {
 	
 	@Autowired
-	private CityService service;
+	private PedidoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<CityDto>> findAll(){
+	public ResponseEntity<List<PedidoDto>> findAll(){	
 		
 		return ResponseEntity.ok().body(service.findAll());
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<CityDto> findById(@PathVariable(name = "id") Long id){
+	public ResponseEntity<PedidoDto> findById(@PathVariable(name = "id") Long id){	
 		
-		return ResponseEntity.ok().body(service.findByid(id));
+		return ResponseEntity.ok().body(service.finById(id));
 	}
+	
+	
+	
 
 }

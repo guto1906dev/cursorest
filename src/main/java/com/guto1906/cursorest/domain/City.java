@@ -18,7 +18,7 @@ public class City implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
 	private String name;
-	
+		
 	@ManyToOne
 	@JoinColumn(name = "estado_id")
 	private State state;
@@ -27,11 +27,11 @@ public class City implements Serializable{
 		
 	}
 
-	public City(Long id, String name, State states) {
+	public City(Long id, String name, State state) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.state = states;
+		this.state = state;
 	}
 
 	public Long getId() {
@@ -50,12 +50,12 @@ public class City implements Serializable{
 		this.name = name;
 	}
 
-	public State getStates() {
+	public State getState() {
 		return state;
 	}
 
-	public void setStates(State states) {
-		this.state = states;
+	public void setState(State state) {
+		this.state = state;
 	}
 
 	@Override

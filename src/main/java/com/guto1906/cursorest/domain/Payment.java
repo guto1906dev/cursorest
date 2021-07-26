@@ -8,25 +8,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.guto1906.cursorest.domain.enums.StatePayment;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Payment {
-	
+
 	@Id
 	private Long id;
 	private Integer estado;
-	
-	
-	  @OneToOne	  
-	  @MapsId	  
-	  @JoinColumn(name = "pedido_id") 
-	  private Pedido pedido;
-	 
-	
+
+	@OneToOne
+	@MapsId
+	@JoinColumn(name = "pedido_id")
+	private Pedido pedido;
+
 	public Payment() {
-		
+
 	}
 
 	public Payment(Long id, StatePayment estado, Pedido pedido) {
@@ -52,15 +51,14 @@ public abstract class Payment {
 		this.estado = estado.getCod();
 	}
 
-	
-	  public Pedido getPedido() {
-		  return pedido; 
-		  }
-	  
-	  public void setPedido(Pedido pedido) { 
-		  this.pedido = pedido;
-		  }
-	 
+	@JsonIgnore
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 
 	@Override
 	public int hashCode() {
@@ -86,7 +84,5 @@ public abstract class Payment {
 			return false;
 		return true;
 	}
-	
-	
 
 }

@@ -1,10 +1,16 @@
 package com.guto1906.cursorest.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class ItemPedido {
+public class ItemPedido  implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
 	private ItemPedidoPk id = new ItemPedidoPk();
@@ -26,6 +32,7 @@ public class ItemPedido {
 		this.preco = preco;
 	}
 	
+	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
@@ -34,6 +41,7 @@ public class ItemPedido {
 		return id.getProduct();
 	}
 
+	@JsonIgnore
 	public ItemPedidoPk getId() {
 		return id;
 	}

@@ -3,6 +3,8 @@ package com.guto1906.cursorest.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,14 @@ public class CityService {
 	@Autowired
 	private CityRepository repo;
 	
+	@Transactional
 	public List<CityDto> findAll(){
 		List<CityDto> list = repo.findAll().stream()
 				.map(entity -> new CityDto(entity)).collect(Collectors.toList());		
 		return list;
 	}
 	
+	@Transactional
 	public CityDto findByid(Long id) {
 		City entity = repo.findById(id).orElseThrow(() -> new NoSuchElementException(
 				"Elemento de Id " + id + " não existe, Tipo " + City.class.getName()));		

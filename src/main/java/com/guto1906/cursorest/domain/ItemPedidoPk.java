@@ -6,6 +6,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Embeddable
 public class ItemPedidoPk implements Serializable {
 	
@@ -19,18 +21,23 @@ public class ItemPedidoPk implements Serializable {
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
+	@JsonIgnore
 	public Pedido getPedido() {
 		return pedido;
 	}
+	
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
+	
 	public Product getProduct() {
 		return product;
 	}
+	
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

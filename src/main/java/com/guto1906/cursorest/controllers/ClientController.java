@@ -13,7 +13,7 @@ import com.guto1906.cursorest.dto.ClientDto;
 import com.guto1906.cursorest.services.ClientService;
 
 @RestController
-@RequestMapping(value = "/clientes")
+@RequestMapping(value = "clientes")
 public class ClientController {
 	
 	@Autowired
@@ -21,11 +21,12 @@ public class ClientController {
 	
 	@GetMapping
 	public ResponseEntity<List<ClientDto>> findAll(){
+		
 		return ResponseEntity.ok().body(service.findAll());
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ClientDto> findById(@PathVariable(name="id") Long id){
+	public ResponseEntity<ClientDto> findById(@PathVariable(name = "id") Long id){
 		
 		return ResponseEntity.ok().body(service.findById(id));
 	}

@@ -1,5 +1,6 @@
 package com.guto1906.cursorest.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,15 +9,19 @@ import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.guto1906.cursorest.domain.enums.TipoClient;
 
 @Entity
-public class Client {
+public class Client  implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +34,7 @@ public class Client {
 	@OneToMany(mappedBy = "client")
 	private List<Address> addresses = new ArrayList<>();
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "PHONE")
 	private Set<String> phones = new HashSet<>();
 
@@ -105,11 +110,12 @@ public class Client {
 		this.phones = phones;
 	}
 
+	@JsonIgnore
 	public Set<Pedido> getPedidos() {
 		return pedidos;
 	}
 
-	public void setOrders(Set<Pedido> pedidos) {
+	public void setPedidos(Set<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 

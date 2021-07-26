@@ -13,27 +13,22 @@ import com.guto1906.cursorest.dto.ProductDto;
 import com.guto1906.cursorest.services.ProductService;
 
 @RestController
-@RequestMapping(value = "/produtos")
+@RequestMapping(value = "produtos")
 public class ProductController {
 	
 	@Autowired
 	private ProductService service;
 	
 	@GetMapping
-	public ResponseEntity<List<ProductDto>> findAll() {
+	public ResponseEntity<List<ProductDto>> findAll(){
 		
-		List<ProductDto> list = service.findAll();
-		
-		return ResponseEntity.ok().body(list);
+		return ResponseEntity.ok().body(service.findAll());
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<ProductDto> findById(@PathVariable Long id) {
+	public ResponseEntity<ProductDto> findById(@PathVariable(name = "id") Long id){
 		
-		ProductDto dto = service.findById(id);
-		
-		return ResponseEntity.ok().body(dto);
+		return ResponseEntity.ok().body(service.findById(id));
 	}
-	
 
 }
