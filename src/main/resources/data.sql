@@ -1,6 +1,11 @@
 INSERT INTO category(name) VALUES ('Informática');
 INSERT INTO category(name) VALUES ('Escritório');
+INSERT INTO category(name) VALUES ('Cama Mesa e Banho');
 INSERT INTO category(name) VALUES ('Eletrônicos');
+INSERT INTO category(name) VALUES ('Jardinagem');
+INSERT INTO category(name) VALUES ('Decoração');
+INSERT INTO category(name) VALUES ('Perfumaria');
+
 
 INSERT INTO product(name,price) VALUES ('Computador',2000.00);
 INSERT INTO product(name,price) VALUES ('Impressora',800.00);

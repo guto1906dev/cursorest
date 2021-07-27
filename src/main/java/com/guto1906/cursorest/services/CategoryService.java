@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.guto1906.cursorest.domain.Category;
 import com.guto1906.cursorest.dto.CategoryDto;
+import com.guto1906.cursorest.dto.CategoryIdDto;
 import com.guto1906.cursorest.repositories.CategoryRepository;
 import com.guto1906.cursorest.services.exceptions.DataIntegrityException;
 import com.guto1906.cursorest.services.exceptions.NoSuchElementException;
@@ -31,10 +32,10 @@ public class CategoryService {
 	}
 
 	@Transactional
-	public CategoryDto findById(Long id) {
+	public CategoryIdDto findById(Long id) {
 		Category entity = repo.findById(id).orElseThrow(() -> new NoSuchElementException(
 				"Elemento de Id " + id + " não existe, Tipo " + Category.class.getName()));
-		CategoryDto dto = new CategoryDto(entity);
+		CategoryIdDto dto = new CategoryIdDto(entity);
 		
 		return dto;
 	}
@@ -53,7 +54,7 @@ public class CategoryService {
 	
 	@Transactional
 	public void delete(Long id) {
-		CategoryDto dto = findById(id);
+		CategoryIdDto dto = findById(id);
 		
 		if(dto.getProducts().isEmpty()) {
 			repo.deleteById(id);
