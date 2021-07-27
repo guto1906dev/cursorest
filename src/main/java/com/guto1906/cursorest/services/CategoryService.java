@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.guto1906.cursorest.domain.Category;
@@ -60,10 +63,18 @@ public class CategoryService {
 			repo.deleteById(id);
 		} else {
 			throw new DataIntegrityException("Não é possível excluir uma categoria com produtos associados.");
-		}
+		}	
 		
+	}
+	
+	@Transactional
+	public Page<CategoryDto> findPage(Integer page, Integer size, String direction, String orderBy){
 		
+		PageRequest pageRequest = PageRequest.of(page, size, Direction.valueOf(direction), orderBy);
+		Page<CategoryDto> list = repo.findAll(pageRequest).map(entity -> new CategoryDto(entity));
 		
+		return list;
+
 	}
 	
 
