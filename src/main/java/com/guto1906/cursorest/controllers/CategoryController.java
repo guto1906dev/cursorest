@@ -3,6 +3,8 @@ package com.guto1906.cursorest.controllers;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +47,7 @@ public class CategoryController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody CategoryDto dto){
+	public ResponseEntity<Void> insert(@Valid @RequestBody CategoryDto dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(dto.getId()).toUri();
@@ -54,7 +56,7 @@ public class CategoryController {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> update(@RequestBody CategoryDto dto, @PathVariable(value = "id") Long id){
+	public ResponseEntity<Void> update(@Valid @RequestBody CategoryDto dto, @PathVariable(value = "id") Long id){
 		dto.setId(id);
 		dto = service.update(dto);
 				
