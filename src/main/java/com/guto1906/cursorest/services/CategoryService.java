@@ -35,10 +35,10 @@ public class CategoryService {
 	}
 
 	@Transactional
-	public CategoryIdDto findById(Long id) {
+	public CategoryDto findById(Long id) {
 		Category entity = repo.findById(id).orElseThrow(() -> new NoSuchElementException(
 				"Elemento de Id " + id + " não existe, Tipo " + Category.class.getName()));
-		CategoryIdDto dto = new CategoryIdDto(entity);
+		CategoryDto dto = new CategoryIdDto(entity);
 		
 		return dto;
 	}
@@ -51,15 +51,16 @@ public class CategoryService {
 	@Transactional
 	public CategoryDto update(CategoryDto dto) {
 		findById(dto.getId());
-		Category entity = new Category(dto.getId(), dto.getName());
+		Category entity = repo.getById(dto.getId());
+		entity.setName(dto.getName());
 		return new CategoryDto(repo.save(entity));		
 	}
 	
 	@Transactional
 	public void delete(Long id) {
-		CategoryIdDto dto = findById(id);
-		
-		if(dto.getProducts().isEmpty()) {
+		findById(id);
+		Category entity = repo.findById(id).get();
+		if(entity.getProducts().isEmpty()) {
 			repo.deleteById(id);
 		} else {
 			throw new DataIntegrityException("Não é possível excluir uma categoria com produtos associados.");

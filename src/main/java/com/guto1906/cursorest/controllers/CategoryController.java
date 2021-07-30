@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.guto1906.cursorest.dto.CategoryDto;
-import com.guto1906.cursorest.dto.CategoryIdDto;
 import com.guto1906.cursorest.services.CategoryService;
 
 @RestController
@@ -39,9 +38,9 @@ public class CategoryController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<CategoryIdDto> findById(@PathVariable Long id) {
+	public ResponseEntity<CategoryDto> findById(@PathVariable Long id) {
 		
-		CategoryIdDto entity = service.findById(id);
+		CategoryDto entity = service.findById(id);
 		
 		return ResponseEntity.ok().body(entity);
 	}
