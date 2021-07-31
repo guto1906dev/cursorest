@@ -64,7 +64,7 @@ public class ClientService {
 		if(entity.getPedidos().isEmpty()) {
 			repo.delete(entity);
 		} else {
-			throw new DataIntegrityException("Não é possível excluir, há entidades vinculadas");
+			throw new DataIntegrityException("Não é possível excluir, há pedidos vinculados");
 		}
 	}
 	
@@ -95,5 +95,7 @@ public class ClientService {
 		
 		return dto;
 	}
+	
+	
 
 }

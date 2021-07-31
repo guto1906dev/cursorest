@@ -7,5 +7,7 @@ import com.guto1906.cursorest.domain.Client;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long>{
+	
+	Client findByEmail(String email);
 
 }

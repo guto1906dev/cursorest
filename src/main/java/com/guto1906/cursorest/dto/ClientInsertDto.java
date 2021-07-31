@@ -2,19 +2,34 @@ package com.guto1906.cursorest.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import com.guto1906.cursorest.services.validation.ClientInsert;
+
+@ClientInsert
 public class ClientInsertDto  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Size(min = 5, max = 120, message = "Deve ter entre 5 e 120 caraceteres")
 	private String name;
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Email(message = "Email inválido")
 	private String email;
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String cpfOuCnpj;
+	
 	private Integer tipo;
 	
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String phone1;
 	private String phone2;
 	private String phone3;
 	
+	@NotEmpty(message = "Preenchimento obrigatório")
 	private String publicPlace;
 	private String number;
 	private String district;
